@@ -11,8 +11,7 @@
         "test": "jest --rootDir ."
     },
     "publishConfig": {
-        "registry": "https://npm.pkg.github.com/pondigitalsolutions/rc-storefront-api/",
-        "access": "public"
+        "registry": "https://npm.pkg.github.com/"
     },
     "repository": {
         "type": "git",
