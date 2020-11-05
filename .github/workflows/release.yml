@@ -57,7 +57,7 @@ jobs:
         id: version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        uses: rymndhng/release-on-push-action@master
+        uses: rymndhng/release-on-push-action@v0.15.0
         with:
           bump_version_scheme: patch
   publish:
