@@ -1,6 +1,6 @@
 {
     "name": "@pondigitalsolutions/rc-storefront-api",
-    "version": "0.9.0",
+    "version": "1.0.0",
     "sideEffects": false,
     "main": "lib/index.cjs.js",
     "module": "lib/index.es.js",
