@@ -59,7 +59,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         uses: rymndhng/release-on-push-action@master
         with:
-          bump_version_scheme: norelease
+          bump_version_scheme: patch
   publish:
     name: Publish package
     runs-on: ubuntu-latest
