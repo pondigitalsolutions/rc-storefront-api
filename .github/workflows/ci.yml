@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - dev
+      - rc
+  pull_request: ~
+
+jobs:
+  test:
+    name: Prepare tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build package
+        run: |
+          yarn install && yarn build
+      - name: Test code
+        run: |
+          yarn test
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v2
+        with:
+          name: code-coverage-report
+          path: ./coverage/**/*.*
+  coverage:
+    name: Code coverage
+    runs-on: ubuntu-latest
+    needs: [test]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@master
+      - name: Download a single artifact
+        uses: actions/download-artifact@v2
+      - name: Run Codecov checks
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
