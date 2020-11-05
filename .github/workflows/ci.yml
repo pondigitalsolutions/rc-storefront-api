@@ -1,11 +1,11 @@
 name: CI
 
 on:
-  push:
-    branches:
-      - dev
-      - rc
-  pull_request: ~
+  pull_request:
+    types:
+      - opened
+    branches-ignore:
+      - main
 
 jobs:
   test:
