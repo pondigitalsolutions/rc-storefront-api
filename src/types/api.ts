@@ -100,4 +100,3 @@ export type UserOrderQueryResponse = QueryResponse<
     "ordersByAccountId",
     UserOrder
 >;
-export type CountriesResponse = MutationResponse<"getCountries", Country>;

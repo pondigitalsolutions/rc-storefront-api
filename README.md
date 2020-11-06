@@ -94,7 +94,7 @@ For example the `CatalogItem` overview page:
 ```
 import {
   usePrimaryShop,
-  useProduct,
+  useCatalogItems,
   onSSR
 } from "@pondigitalsolutions/reactioncommerce-composables";
 
@@ -107,7 +107,7 @@ export default {
         totalProducts,
         search,
         loading,
-    } = useProduct("categoryProducts");
+    } = useCatalogItems("products");
 
     onSSR(async () => {
       await getPrimaryShopId();
