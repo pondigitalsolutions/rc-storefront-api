@@ -137,5 +137,8 @@ We use the [Probot DCO GitHub app](https://github.com/apps/dco) to check for DCO
 
 If you forget to sign-off your commits, the DCO bot will remind you and give you detailed instructions for how to amend your commits to add a signature.
 
+# Thanks 
+Many thanks to Reaction Commerce, Vue Storefront and Home Assistent for being a inspiration for the issue templates and docs!!
+
 # License
 This integration is [GNU AGPLv3 Licensed](https://github.com/pondigitalsolutions/rc-storefront-api/blob/main/License)
