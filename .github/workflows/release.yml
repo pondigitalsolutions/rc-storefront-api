@@ -28,17 +28,18 @@ jobs:
       - name: Upload build results
         uses: actions/upload-artifact@v2
         with:
-          name: package
+          name: build-package
           path: ./lib/**/*.*
   coverage:
     name: Code coverage
     runs-on: ubuntu-latest
     needs: [test]
     steps:
-      - name: Checkout code
-        uses: actions/checkout@master
-      - name: Download a single artifact
+      - name: Download a coverage artifact
         uses: actions/download-artifact@v2
+        with:
+          name: code-coverage-report
+          path: ./coverage
       - name: Run Codecov checks
         uses: codecov/codecov-action@v1
         with:
@@ -51,8 +52,6 @@ jobs:
       version: ${{ steps.version.outputs.tag_name }}
     if: github.event.pull_request.merged
     steps:
-      - name: Checkout code
-        uses: actions/checkout@master
       - name: Version upgrade
         id: version
         env:
@@ -71,14 +70,24 @@ jobs:
       - name: Setting Node environment
         uses: actions/setup-node@v1
         with:
+          registry-url: "https://npm.pkg.github.com/"
+          scope: "@pondigitalsolutions"
           node-version: 12
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+      - name: Create .npmrc
+        run: |
+          echo -e "//npm.pkg.github.com/:_authToken=:_authToken=$NPM_TOKEN" >> ~/.npmrc
+          echo -e "@pondigitalsolutions:registry=https://npm.pkg.github.com/" >> ~/.npmrc
+        env:
+          NPM_TOKEN: ${{ secrets.ACCESS_TOKEN }}
       - name: Download package from previous steps
         uses: actions/download-artifact@v2
         with:
-          name: package
-      - name: Authenticate
-        run: |
-          yarn login --registry=https://npm.pkg.github.com/
+          name: build-package
+          path: ./lib
       - name: Publish
         run: |
           yarn publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.ACCESS_TOKEN }}

@@ -3,7 +3,7 @@ import { CartMutationResponse } from "./../types/api";
 import { SelectFulfillmentParams } from './../types/interfaces';
 import setShippingMethodToCartQuery from "./setShippingMethodToCartQuery";
 
-const setShippingAddressToCart = async (
+const setShippingMethodToCart = async (
     params: SelectFulfillmentParams
 ): Promise<CartMutationResponse> => {
     return await apolloClient.mutate({
@@ -14,4 +14,4 @@ const setShippingAddressToCart = async (
     });
 };
 
-export default setShippingAddressToCart;
+export default setShippingMethodToCart;
